@@ -7,10 +7,11 @@ class KMeansClassifier:
 
     def fit(self,X_train, y_train):
         self.n_classes = len(set(y_train))
-        k_means = np.zeros((self.n_classes,X_train.shape[1:]))
+        k_means = np.zeros(tuple([self.n_classes]+list(X_train.shape[1:])))
+        #print(k_means.shape)
 
         for i in range(X_train.shape[0]):
-            k_means[y_train[i]] += X_train[i,:]
+            k_means[y_train[i]] += X_train[i]
         
         k_means /= X_train.shape[0]
 
